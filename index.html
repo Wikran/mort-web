@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>MORT DOS App</title>
+  <script src="https://js-dos.com/6.22/current/js-dos.js"></script>
+  <link rel="stylesheet" href="https://js-dos.com/6.22/current/js-dos.css">
+</head>
+<body>
+  <div id="dos" style="width: 100%; height: 600px;"></div>
+
+  <script>
+    Dos(document.getElementById("dos"), {
+      wdosboxUrl: "https://js-dos.com/6.22/current/wdosbox.js",
+    }).ready((fs, main) => {
+      fs.extract("MORT.zip").then(() => {
+        main(["MORT/mort.exe"]);
+      });
+    });
+  </script>
+</body>
+</html>
