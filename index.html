@@ -4,7 +4,6 @@
   <meta charset="utf-8">
   <title>MORT DOS App</title>
 
-  <!-- โหลด js-dos -->
   <script src="https://js-dos.com/6.22/current/js-dos.js"></script>
   <link rel="stylesheet" href="https://js-dos.com/6.22/current/js-dos.css">
 
@@ -28,21 +27,30 @@
 </head>
 
 <body>
-  <!-- ใช้ canvas แทน div -->
   <canvas id="dos"></canvas>
 
   <script>
-  Dos(document.getElementById("dos"), {
-    wdosboxUrl: "https://js-dos.com/6.22/current/wdosbox.js",
-  }).ready((fs, main) => {
-    fs.extract("MORT.zip").then(() => {
-      // เพิ่ม delay 1 วินาทีเพื่อให้ DOSBox ตั้งค่า CPU เสร็จ
-      setTimeout(() => {
-        main(["MORT/MORT.exe"]);
-      }, 1000);
+    Dos(document.getElementById("dos"), {
+      wdosboxUrl: "https://js-dos.com/6.22/current/wdosbox.js",
+    }).ready((fs, main) => {
+
+      fs.extract("MORT.zip").then(() => {
+
+        // ให้ DOSBox ตั้งค่าระบบก่อน 1.5 วินาที
+        setTimeout(() => {
+
+          // รันคำสั่ง DOS แบบชัดเจน
+          main([
+            "-c", "mount c .",
+            "-c", "c:",
+            "-c", "cd MORT",
+            "-c", "MORT.exe"
+          ]);
+
+        }, 1500);
+
+      });
     });
-  });
-</script>
+  </script>
 </body>
 </html>
-
