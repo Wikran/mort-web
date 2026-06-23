@@ -32,15 +32,17 @@
   <canvas id="dos"></canvas>
 
   <script>
-    Dos(document.getElementById("dos"), {
-      wdosboxUrl: "https://js-dos.com/6.22/current/wdosbox.js",
-    }).ready((fs, main) => {
-      // โหลดไฟล์ ZIP และรันโปรแกรม MORT.exe
-      fs.extract("MORT.zip").then(() => {
+  Dos(document.getElementById("dos"), {
+    wdosboxUrl: "https://js-dos.com/6.22/current/wdosbox.js",
+  }).ready((fs, main) => {
+    fs.extract("MORT.zip").then(() => {
+      // เพิ่ม delay 1 วินาทีเพื่อให้ DOSBox ตั้งค่า CPU เสร็จ
+      setTimeout(() => {
         main(["MORT/MORT.exe"]);
-      });
+      }, 1000);
     });
-  </script>
+  });
+</script>
 </body>
 </html>
 
